@@ -4,15 +4,43 @@ import 'firebase/auth';
 
 // Your web app's Firebase configuration
 const config =  {
-  apiKey: "AIzaSyAHTfW9qXzlj7QYXqhsYfb51EfY9SP-6fk",
-  authDomain: "crwn-db-99ec2.firebaseapp.com",
-  databaseURL: "https://crwn-db-99ec2.firebaseio.com",
-  projectId: "crwn-db-99ec2",
+  apiKey: "AIzaSyAoDls6Qr4QMWsvBeacGeNgaABRMXjg9to",
+  authDomain: "crwn-db-d2efc.firebaseapp.com",
+  databaseURL: "https://crwn-db-d2efc.firebaseio.com",
+  projectId: "crwn-db-d2efc",
   storageBucket: "",
-  messagingSenderId: "571592188829",
-  appId: "1:571592188829:web:3c18324fb990076a200574",
-  measurementId: "G-SWTERE7HW9"
+  messagingSenderId: "569777474464",
+  appId: "1:569777474464:web:7538afb4a29154b0d6b2c5"
 };
+
+//take userauth from firebase and store it in db
+//userAuth, is what we get back from the authentication library
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  if(!userAuth) return;
+  //query in firestore for the document to see if it already exists
+  const userRef= firestore.doc(`users/${userAuth.uid}`);
+
+  const snapShot = await userRef.get();
+
+  if(!snapShot.exists) {
+    //if doens't exist then we can create it
+    const {displayName, email} = userAuth;
+    const createdAt = new Date();
+
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        createdAt,
+        ...additionalData
+      })
+    } catch (error) {
+      console.log('error creating user', error.message)
+    }
+  }
+
+  return userRef;
+}
 
 firebase.initializeApp(config);
 
