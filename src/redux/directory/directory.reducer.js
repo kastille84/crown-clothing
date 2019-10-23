@@ -1,4 +1,5 @@
-const initialState = [
+const initialState = {
+  sections: [
   {
     title: 'hats',
     imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
@@ -32,11 +33,12 @@ const initialState = [
     linkUrl: ''
   }
 ]
+}
 
 const directoryReducer = (state=initialState, action) => {
   switch(action.type) {
     default:
-      return [...state];
+      return state;
   }
 }
 
