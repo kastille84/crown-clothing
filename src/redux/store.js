@@ -3,7 +3,7 @@ import logger from 'redux-logger';
 import {persistStore} from 'redux-persist';
 
 import rootReducer from './root-reducer';
-
+ 
 //set up middlewares
 
 const middlewares = [];

@@ -10,7 +10,7 @@ const onToken = token => {
 const StripeCheckoutButton = ({price}) => {
   //stripe wants price in cents, for proper charge to be made
   const priceForStripe = price * 100;
-  const publishableKey = "pk_test_getYourOwwKey";
+  const publishableKey = "pk_test_pPo6PSpJRmzt6uvEEuMrrNc4";
 
   return (
     //go to github repo to see all the optional props you can pass
@@ -19,7 +19,7 @@ const StripeCheckoutButton = ({price}) => {
       name="CRWN Clothing"
       billingAddress
       shippingAddress
-      imaage='https://svgshare.com/i/CUz.svg'
+      image='https://svgshare.com/i/CUz.svg'
       description={`Your total is ${price}`}
       amount={priceForStripe}
       panelLabel="Pay Now"
